@@ -1,6 +1,6 @@
 require([
-  'computedLazy#computedLazy'
-], function(computedLazy) {
+  'vendor/spotify-knockout/common/sp-computed#SPComputed'
+], function(SPComputed) {
 
   var ko = window.ko;
 
@@ -15,7 +15,7 @@ require([
    */
   function observableCollection(stitchCollection) {
 
-    var self = computedLazy(function() {
+    var self = SPComputed(function() {
       _issueRefreshIfNeeded();
       return _cache.items().slice(0);
     });
@@ -71,15 +71,15 @@ require([
       promise.fail(function(res, err) { _currentError(err); });
     }
 
-    var _isStale = computedLazy(function() {
+    var _isStale = SPComputed(function() {
       return _isValidCursor() && (!_cursorIsCached() || _changedSinceRefresh());
     });
 
-    var _isValidCursor = computedLazy(function() {
+    var _isValidCursor = SPComputed(function() {
       return _cursor().length !== null && _cursor().index !== null;
     });
 
-    var _cursorIsCached = computedLazy(function() {
+    var _cursorIsCached = SPComputed(function() {
       return _cursor().equals(_cache.cursor());
     });
 

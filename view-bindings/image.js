@@ -20,7 +20,7 @@ function(Image, models) {
     return link;
   };
 
-  ko.bindingHandlers.stitchImage = {
+  ko.bindingHandlers.spotifyImage = {
     update: function(element, valueAccessor, allBindingsAccessor) {
 
       var obj = ko.utils.unwrapObservable(valueAccessor());

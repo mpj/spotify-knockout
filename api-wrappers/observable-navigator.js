@@ -14,14 +14,17 @@ function(models) {
    *                         will need this to know which app
    *                         to pass the request to.
    */
-  exports.Navigator = function(appName) {
-
+  exports.ObservableNavigator = function(appName) {
 
     // Private observable that holds the
     // current args of the application.
     var _args = ko.observable([]);
 
-    bindToApplicationArguments(_args);
+    var onChange = function() {
+      _args(models.application['arguments']);
+    }
+    models.application.addEventListener('arguments', onChange);
+    models.application.load('arguments').done(onChange);
 
     this.args = ko.computed({
       read: function() {
@@ -42,19 +45,5 @@ function(models) {
     });
 
   };
-
-  /**
-   * Keeps a Knockout Observable in sync with the application
-   * arguments.
-   *
-   * @param  {Knockout.Observable} observable The observable to keep in sync.
-   */
-  function bindToApplicationArguments(observable) {
-    var onChange = function() {
-      observable(models.application['arguments']);
-    }
-    models.application.addEventListener('arguments', onChange);
-    models.application.load('arguments').done(onChange);
-  }
 
 });

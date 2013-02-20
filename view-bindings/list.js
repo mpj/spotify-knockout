@@ -12,7 +12,7 @@ require([
 ],
 function(List) {
 
-  ko.bindingHandlers.stitchList = {
+  ko.bindingHandlers.spotifyList = {
     update: function(element, valueAccessor, allBindingsAccessor) {
 
       var obj = ko.utils.unwrapObservable(valueAccessor());

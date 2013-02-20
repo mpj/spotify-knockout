@@ -4,7 +4,7 @@
  * subscribers if the evaluated value is different from last time.
  * @param {Function} obj Either a function or an object with read/write properties.
  */
-function computedLazy(obj) {
+function spComputed(obj) {
   var config;
   if (typeof obj === 'function') {
     config = { read: obj };
@@ -60,4 +60,4 @@ function compareSingleStitch (x, y) {
 }
 
 
-exports.computedLazy = computedLazy;
+exports.spComputed = spComputed;
